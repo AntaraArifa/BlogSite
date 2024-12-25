@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon } from "react-icons/fa";
 
-export default function Header() {
+export default function HeaderCom() {
   const [isOpen, setIsOpen] = useState(false);
   const path = useLocation().pathname;
 
