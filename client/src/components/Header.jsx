@@ -4,6 +4,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from '../redux/theme/themeSlice';
+import { signoutSuccess} from "../redux/user/userSlice";
 
 export default function HeaderCom() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,10 +14,21 @@ export default function HeaderCom() {
   const { currentUser } = useSelector((state) => state.user);
   const { theme } = useSelector((state) => state.theme);
 
-  const handleSignout = () => {
-    console.log("Sign out clicked");
-    // Add your sign-out logic here
-  };
+  const handleSignout = async () => {
+      try {
+        const res = await fetch('/api/user/signout', {
+          method: 'POST',
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          console.log(data.message);
+        } else {
+          dispatch(signoutSuccess());
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
 
   return (
     <nav className="border-b-2 flex justify-between items-center p-4 dark:bg-gray-900">

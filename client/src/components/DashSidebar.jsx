@@ -9,7 +9,7 @@ import {
   HiChartPie,
 } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
-//import { signoutSuccess } from "../redux/user/userSlice";
+import { signoutSuccess} from "../redux/user/userSlice";
 
 export default function DashSidebar() {
   const location = useLocation();
@@ -26,18 +26,20 @@ export default function DashSidebar() {
   }, [location.search]);
 
   const handleSignout = async () => {
-    try {
-      const res = await fetch("/api/user/signout", { method: "POST" });
-      const data = await res.json();
-      if (!res.ok) {
-        console.log(data.message);
-      } else {
-        //dispatch(signoutSuccess());
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+        try {
+          const res = await fetch('/api/user/signout', {
+            method: 'POST',
+          });
+          const data = await res.json();
+          if (!res.ok) {
+            console.log(data.message);
+          } else {
+            dispatch(signoutSuccess());
+          }
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
 
   return (
     <aside className="w-full md:w-56 bg-gray-100 dark:bg-gray-900 h-full p-4">
