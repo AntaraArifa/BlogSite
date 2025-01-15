@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+
 import {
   updateStart,
   updateSuccess,
@@ -84,8 +86,8 @@ export default function DashProfile() {
 
   const handleSignout = async () => {
     try {
-      const res = await fetch('/api/user/signout', {
-        method: 'POST',
+      const res = await fetch("/api/user/signout", {
+        method: "POST",
       });
       const data = await res.json();
       if (!res.ok) {
@@ -148,6 +150,16 @@ export default function DashProfile() {
         >
           Update
         </button>
+        {currentUser.isAdmin && (
+          <Link to={"/create-post"}>
+            <button
+              type="button"
+              className="w-full px-4 py-2 text-white font-semibold rounded-lg bg-gradient-to-r from-blue-400 via-blue-600 to-blue-900 hover:opacity-90 transition mt-4"
+            >
+              Create a post
+            </button>
+          </Link>
+        )}
       </form>
       <div className="text-red-500 flex justify-between mt-5">
         <span onClick={() => setShowModal(true)} className="cursor-pointer">
