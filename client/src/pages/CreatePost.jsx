@@ -40,21 +40,23 @@ export default function CreatePost() {
 
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
-      <h1 className="text-center text-3xl my-7 font-semibold">Create a post</h1>
+      <h1 className="text-center text-3xl my-7 font-semibold text-gray-900 dark:text-gray-100">
+        Create a post
+      </h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <input
             type="text"
             placeholder="Title"
             required
-            className="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
             }
           />
           <select
             required
-            className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
             }
@@ -75,7 +77,7 @@ export default function CreatePost() {
         <ReactQuill
           theme="snow"
           placeholder="Write something..."
-          className="h-72 mb-12 border border-gray-300 rounded-md"
+          className="h-72 mb-12 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
           required
           onChange={(value) => setFormData({ ...formData, content: value })}
         />
@@ -86,7 +88,9 @@ export default function CreatePost() {
           Publish
         </button>
         {publishError && (
-          <div className="mt-5 text-red-500 font-medium">{publishError}</div>
+          <div className="mt-5 text-red-500 dark:text-red-400 font-medium">
+            {publishError}
+          </div>
         )}
       </form>
     </div>
