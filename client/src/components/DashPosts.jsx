@@ -56,6 +56,28 @@ export default function DashPosts() {
     }
   };
 
+  // Delete post
+  const handleDeletePost = async () => {
+    setShowModal(false);
+    try {
+      const res = await fetch(
+        `/api/post/deletepost/${postIdToDelete}/${currentUser._id}`,
+        {
+          method: 'DELETE',
+        }
+      );
+      const data = await res.json();
+      if (!res.ok) {
+        console.error('Failed to delete post:', data.message);
+      } else {
+        setUserPosts((prev) =>
+          prev.filter((post) => post._id !== postIdToDelete)
+        );
+      }
+    } catch (error) {
+      console.error('Error deleting post:', error.message);
+    }
+  };
 
   return (
     <div className="p-3 max-w-3xl mx-auto">
