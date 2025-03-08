@@ -45,6 +45,22 @@ export default function DashUsers() {
     }
   };
 
+  const handleDeleteUser = async () => {
+    setShowModal(false);
+    try {
+      const res = await fetch(`/api/user/delete/${userIdToDelete}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        console.error('Failed to delete user:', data.message);
+      } else {
+        setUsers((prev) => prev.filter((user) => user._id !== userIdToDelete));
+      }
+    } catch (error) {
+      console.error('Error deleting user:', error.message);
+    }
+  };
 
   return (
     <div className="p-3 max-w-3xl mx-auto">
