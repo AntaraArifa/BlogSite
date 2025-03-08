@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import CommentSection from '../components/CommentSection';
+import PostCard from '../components/PostCard';
 
 export default function PostPage() {
   const { postSlug } = useParams();
@@ -67,7 +68,7 @@ export default function PostPage() {
       <img
         src={post?.image}
         alt={post?.title}
-        className="mt-10 p-3 max-h-[600px] w-full object-cover"
+        className="mt-10 p-3 max-h-[400px] w-full object-cover"
       />
       <div className="flex justify-between p-3 border-b border-gray-500 mx-auto w-full max-w-2xl text-xs">
         <span>{post && new Date(post.createdAt).toLocaleDateString()}</span>
@@ -80,6 +81,13 @@ export default function PostPage() {
       <div className="max-w-4xl mx-auto w-full">
       </div>
       <CommentSection postId={post?._id} />
+      <div className='flex flex-col justify-center items-center mb-5'>
+        <h1 className='text-xl mt-5'>Recent Articles</h1>
+        <div className='flex flex-wrap gap-5 mt-5 justify-center'>
+          {recentPosts &&
+            recentPosts.map((post) => <PostCard key={post._id} post={post} />)}
+        </div>
+      </div>
     </main>
   );
 }
