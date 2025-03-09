@@ -109,19 +109,6 @@ export default function DashSidebar() {
                 Users
               </Link>
             </li>
-            <li>
-              <Link
-                to="/dashboard?tab=comments"
-                className={`flex items-center gap-3 px-4 py-2 rounded-lg ${
-                  tab === "comments"
-                    ? "bg-blue-500 text-white"
-                    : "text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-800"
-                }`}
-              >
-                <HiAnnotation className="text-xl" />
-                Comments
-              </Link>
-            </li>
           </>
         )}
         <li>

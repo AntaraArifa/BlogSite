@@ -185,18 +185,6 @@ export default function HeaderCom() {
               About
             </Link>
           </li>
-          <li className={`nav-item ${path === "/projects" ? "active" : ""}`}>
-            <Link
-              to="/projects"
-              className={`nav-link block py-2 px-4 ${
-                theme === "light"
-                  ? "text-gray-700 hover:text-gray-900"
-                  : "text-white hover:text-gray-300"
-              }`}
-            >
-              Projects
-            </Link>
-          </li>
         </ul>
       </div>
     </nav>
